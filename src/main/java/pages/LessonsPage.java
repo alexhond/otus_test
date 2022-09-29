@@ -4,9 +4,9 @@ import org.openqa.selenium.WebDriver;
 
 public class LessonsPage extends AnyPageAbs<LessonsPage> {
 
-    public LessonsPage(WebDriver driver) {
-        super(driver);
-    }
+  public LessonsPage(WebDriver driver) {
+    super(driver);
+  }
 
 
 }

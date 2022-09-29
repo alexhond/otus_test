@@ -9,41 +9,56 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pages.MainPage;
 
 @ExtendWith(UIExtension.class)
 public class MainPageCoursesTest {
+  private static final Logger LOG = LoggerFactory.getLogger(MainPageCoursesTest.class);
 
-    @Driver
-    public WebDriver driver;
+  @Driver
+  public WebDriver driver;
 
-    @Test
-    public void click_popular_course() {
-        new MainPage(driver).open();
+  @Test
+  void click_popular_course() {
+    new MainPage(driver).open();
+    String name = "Выбор профессии в IT";
 
-        String title = new PopularCourses(driver)
-                .clickLessonItem("MS SQL Server Developer")
-                .getPageTitle();
-        Assertions.assertEquals("Курсы MS SQL Server разработчик. Обучение Microsoft SQL Server для инженеров и администраторов баз данных", title);
-    }
+    String title = new PopularCourses(driver)
+        .clickLessonItem(name)
+        .getPageTitle();
+    LOG.info("Заголовок: " + title);
+    Assertions.assertEquals(name, title);
+  }
 
-    @Test
-    public void click_recommendation_course() {
-        new MainPage(driver).open();
+  @Test
+  public void click_recommendation_course() {
+    new MainPage(driver).open();
+    String name = "Специализация QA Automation Engineer";
 
-        String title = new RecommendationCourses(driver)
-                .clickLessonItem("Java QA Engineer. Professional")
-                .getPageTitle();
-        Assertions.assertEquals("Курсы MS SQL Server разработчик. Обучение Microsoft SQL Server для инженеров и администраторов баз данных", title);
-    }
+    String title = new RecommendationCourses(driver)
+        .clickLessonItem(name)
+        .getPageTitle();
+    LOG.info("Заголовок: " + title);
+    Assertions.assertEquals(name, title);
+  }
 
-    @Test
-    public void click_specialization_course() {
-        new MainPage(driver).open();
+  @Test
+  void click_specialization_course() {
+    new MainPage(driver).open();
+    String name = "Специализация С++";
 
-        new SpecializationCourses(driver)
-                .clickLessonItem("Специализация С++")
-                .getPageTitle();
-    }
+    String title = new SpecializationCourses(driver)
+        .clickLessonItem(name)
+        .getPageTitle();
+    LOG.info("Заголовок: " + title);
+    Assertions.assertEquals(name, title);
+  }
 
+  @Test
+  void compare_date_test() {
+    new MainPage(driver).open();
+    new SpecializationCourses(driver).getLessonsDate();
+  }
 }

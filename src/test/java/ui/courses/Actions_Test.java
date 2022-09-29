@@ -12,32 +12,32 @@ import org.openqa.selenium.interactions.Actions;
 @ExtendWith(UIExtension.class)
 public class Actions_Test {
 
-    @Driver
-    public WebDriver driver;
+  @Driver
+  public WebDriver driver;
 
-    @Test
-    public void dragAndDrop() {
-        driver.get("https://selenium08.blogspot.com/2020/01/click-and-hold.html");
-        WebElement elementButtonsBlock = driver.findElement(By.id("sortable"));
+  @Test
+  public void dragAndDrop() {
+    driver.get("https://selenium08.blogspot.com/2020/01/click-and-hold.html");
+    WebElement elementButtonsBlock = driver.findElement(By.id("sortable"));
 
-        WebElement charElement1 = elementButtonsBlock.findElement(By.xpath("./li[@name='B']"));
-        WebElement charElement2 = elementButtonsBlock.findElement(By.xpath("./li[@name='J']"));
+    WebElement charElement1 = elementButtonsBlock.findElement(By.xpath("./li[@name='B']"));
+    WebElement charElement2 = elementButtonsBlock.findElement(By.xpath("./li[@name='J']"));
 
-        Actions actions = new Actions(driver);
-        actions
-                .clickAndHold(charElement1)
-                .moveToElement(charElement2, 10, 50)
-                .click()
-                .build().perform();
-    }
+    Actions actions = new Actions(driver);
+    actions
+        .clickAndHold(charElement1)
+        .moveToElement(charElement2, 10, 50)
+        .click()
+        .build().perform();
+  }
 
-    @Test
-    public void rightClickAction() {
-        driver.get("https://demo.guru99.com/test/simple_context_menu.html");
+  @Test
+  public void rightClickAction() {
+    driver.get("https://demo.guru99.com/test/simple_context_menu.html");
 
-        WebElement rightButtonElement = driver.findElement(By.cssSelector("span.context-menu-one"));
-        Actions actions = new Actions(driver);
+    WebElement rightButtonElement = driver.findElement(By.cssSelector("span.context-menu-one"));
+    Actions actions = new Actions(driver);
 
-        actions.contextClick(rightButtonElement).build().perform();
-    }
+    actions.contextClick(rightButtonElement).build().perform();
+  }
 }

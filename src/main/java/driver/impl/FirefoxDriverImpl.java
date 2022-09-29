@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class FirefoxDriverImpl implements IDriver {
-    @Override
-    public WebDriver newDriver() {
-        WebDriverManager.firefoxdriver().setup();
-        return new FirefoxDriver();
-    }
+  @Override
+  public WebDriver newDriver() {
+    WebDriverManager.firefoxdriver().setup();
+    return new FirefoxDriver();
+  }
 }

@@ -12,33 +12,33 @@ import waiters.StandartWaiter;
 
 public abstract class AnyComponentAbs<T> extends CommonActions<T> {
 
-    {
-        this.standartWaiter.waitForCondition(ExpectedConditions.visibilityOfElementLocated(getComponentLocator()));
+  {
+    this.standartWaiter.waitForCondition(ExpectedConditions.visibilityOfElementLocated(getComponentLocator()));
+  }
+
+  protected String baseLocator;
+  protected Actions actions;
+
+  public AnyComponentAbs(WebDriver driver) {
+    super(driver);
+    actions = new Actions(driver);
+  }
+
+  private By getComponentLocator() {
+    Component component = getClass().getAnnotation(Component.class);
+
+    if (component != null) {
+      String value = component.value();
+
+      baseLocator = value;
+
+      if (value.startsWith("/")) {
+        return By.xpath(value);
+      }
+      return By.cssSelector(value);
     }
 
-    protected String baseLocator;
-    protected Actions actions;
-
-    public AnyComponentAbs(WebDriver driver) {
-        super(driver);
-        actions = new Actions(driver);
-    }
-
-    private By getComponentLocator() {
-        Component component = getClass().getAnnotation(Component.class);
-
-        if (component != null) {
-            String value = component.value();
-
-            baseLocator = value;
-
-            if (value.startsWith("/")) {
-                return By.xpath(value);
-            }
-            return By.cssSelector(value);
-        }
-
-        return null;
-    }
+    return null;
+  }
 
 }

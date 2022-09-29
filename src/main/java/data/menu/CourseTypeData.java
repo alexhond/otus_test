@@ -1,15 +1,15 @@
 package data.menu;
 
 public enum CourseTypeData {
-    Programmer("Программирование");
+  Programmer("Программирование");
 
-    private String name;
+  private String name;
 
-    CourseTypeData(String name) {
-        this.name = name;
-    }
+  CourseTypeData(String name) {
+    this.name = name;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 }

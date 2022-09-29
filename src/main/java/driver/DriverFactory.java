@@ -10,29 +10,29 @@ import java.util.Locale;
 
 public class DriverFactory implements IDriverFactory {
 
-    private final String browserType = System.getProperty("browser").toLowerCase(Locale.ROOT);
-    private static final String CHROME = "chrome";
-    private static final String FIREFOX = "firefox";
-    private static final String OPERA = "opera";
-    private final String driverName = System.getProperty("browser");
+  private final String browserType = System.getProperty("browser").toLowerCase(Locale.ROOT);
+  private static final String CHROME = "chrome";
+  private static final String FIREFOX = "firefox";
+  private static final String OPERA = "opera";
+  private final String driverName = System.getProperty("browser");
 
-    @Override
-    public EventFiringWebDriver getDriver() {
-        switch (driverName.toLowerCase(Locale.ROOT)) {
-            case CHROME:
-                return new EventFiringWebDriver(new ChromeDriverImpl().newDriver());
-            case FIREFOX:
-                return new EventFiringWebDriver(new FirefoxDriverImpl().newDriver());
-            case OPERA:
-                return new EventFiringWebDriver(new OperaDriverImpl().newDriver());
-            default:
-                try {
-                    throw new DriverTypeNotSupported(this.browserType);
-                } catch (DriverTypeNotSupported ex) {
-                    ex.printStackTrace();
-                    return null;
-                }
+  @Override
+  public EventFiringWebDriver getDriver() {
+    switch (driverName.toLowerCase(Locale.ROOT)) {
+      case CHROME:
+        return new EventFiringWebDriver(new ChromeDriverImpl().newDriver());
+      case FIREFOX:
+        return new EventFiringWebDriver(new FirefoxDriverImpl().newDriver());
+      case OPERA:
+        return new EventFiringWebDriver(new OperaDriverImpl().newDriver());
+      default:
+        try {
+          throw new DriverTypeNotSupported(this.browserType);
+        } catch (DriverTypeNotSupported ex) {
+          ex.printStackTrace();
+          return null;
         }
     }
+  }
 
 }

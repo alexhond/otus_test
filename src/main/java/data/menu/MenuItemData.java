@@ -1,15 +1,15 @@
 package data.menu;
 
 public enum MenuItemData {
-    Courses("Курсы");
+  Courses("Курсы");
 
-    private String name;
+  private String name;
 
-    MenuItemData(String name) {
-        this.name = name;
-    }
+  MenuItemData(String name) {
+    this.name = name;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 }

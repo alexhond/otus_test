@@ -14,32 +14,31 @@ import java.util.logging.Level;
 
 public class ChromeDriverImpl implements IDriver {
 
-    @Override
-    public WebDriver newDriver() {
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--no-sandbox");
-        chromeOptions.addArguments("--no-first-run");
-        chromeOptions.addArguments("--enable-extensions");
-        chromeOptions.addArguments("--homepage=about:blank");
-        chromeOptions.addArguments("--ignore-certificate-errors");
-        chromeOptions.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-        chromeOptions.setCapability(CapabilityType.VERSION, System.getProperty("browser.version", ""));
-        chromeOptions.setCapability("enableVNC", Boolean.parseBoolean(System.getProperty("enableVNC", "false")));
-        chromeOptions.setHeadless(HEADLESS);
+  @Override
+  public WebDriver newDriver() {
+    ChromeOptions chromeOptions = new ChromeOptions();
+    chromeOptions.addArguments("--no-sandbox");
+    chromeOptions.addArguments("--no-first-run");
+    chromeOptions.addArguments("--enable-extensions");
+    chromeOptions.addArguments("--homepage=about:blank");
+    chromeOptions.addArguments("--ignore-certificate-errors");
+    chromeOptions.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+    chromeOptions.setCapability(CapabilityType.VERSION, System.getProperty("browser.version", ""));
+    chromeOptions.setCapability("enableVNC", Boolean.parseBoolean(System.getProperty("enableVNC", "false")));
+    chromeOptions.setHeadless(HEADLESS);
 
-        LoggingPreferences logPrefs = new LoggingPreferences();
-        logPrefs.enable(LogType.PERFORMANCE, Level.INFO);
-        chromeOptions.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+    LoggingPreferences logPrefs = new LoggingPreferences();
+    logPrefs.enable(LogType.PERFORMANCE, Level.INFO);
+    chromeOptions.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
 
-        if (getRemoteUrl() == null) {
-            try {
-                downloadLocalWebDriver(DriverManagerType.CHROME);
-            } catch (DriverTypeNotSupported ex) {
-                ex.printStackTrace();
-            }
-
-            return new ChromeDriver(chromeOptions);
-        } else
-            return new RemoteWebDriver(getRemoteUrl(), chromeOptions);
-    }
+    if (getRemoteUrl() == null) {
+      try {
+        downloadLocalWebDriver(DriverManagerType.CHROME);
+      } catch (DriverTypeNotSupported ex) {
+        ex.printStackTrace();
+      }
+      return new ChromeDriver(chromeOptions);
+    } else
+      return new RemoteWebDriver(getRemoteUrl(), chromeOptions);
+  }
 }

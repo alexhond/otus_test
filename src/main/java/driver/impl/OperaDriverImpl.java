@@ -6,9 +6,9 @@ import org.openqa.selenium.opera.OperaDriver;
 
 public class OperaDriverImpl implements IDriver {
 
-    @Override
-    public WebDriver newDriver() {
-        WebDriverManager.operadriver().setup();
-        return new OperaDriver();
-    }
+  @Override
+  public WebDriver newDriver() {
+    WebDriverManager.operadriver().setup();
+    return new OperaDriver();
+  }
 }

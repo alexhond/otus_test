@@ -12,28 +12,28 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class StandartWaiter implements WaiterInt {
 
-    private WebDriver driver = null;
+  private WebDriver driver = null;
 
-    public StandartWaiter(WebDriver driver) {
-        this.driver = driver;
-    }
+  public StandartWaiter(WebDriver driver) {
+    this.driver = driver;
+  }
 
-    @Override
-    public boolean waitForCondition(ExpectedCondition condition) {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, IMPLICITLY_WAIT_SECOND);
-        try {
-            webDriverWait.until(condition);
-            return true;
-        } catch (Exception ex) {
-            return false;
-        }
+  @Override
+  public boolean waitForCondition(ExpectedCondition condition) {
+    WebDriverWait webDriverWait = new WebDriverWait(driver, IMPLICITLY_WAIT_SECOND);
+    try {
+      webDriverWait.until(condition);
+      return true;
+    } catch (Exception ex) {
+      return false;
     }
+  }
 
-    public boolean waitForElementVisible(WebElement element) {
-        return waitForCondition(ExpectedConditions.visibilityOf(element));
-    }
+  public boolean waitForElementVisible(WebElement element) {
+    return waitForCondition(ExpectedConditions.visibilityOf(element));
+  }
 
-    public boolean waitForElementNotVisible(WebElement element) {
-        return waitForCondition(ExpectedConditions.invisibilityOf(element));
-    }
+  public boolean waitForElementNotVisible(WebElement element) {
+    return waitForCondition(ExpectedConditions.invisibilityOf(element));
+  }
 }

@@ -11,20 +11,20 @@ import java.util.List;
 @Component("//*[contains(@class, 'container-lessons')]/div[text()='Популярные курсы']//following-sibling::div")
 public class PopularCourses extends AnyComponentAbs<PopularCourses> {
 
-    @FindBy(xpath = "//*[contains(@class, 'container-lessons')]/div[text()='Популярные курсы']//following-sibling::div/a")
-    private List<WebElement> lessons;
+  @FindBy(xpath = "//*[contains(@class, 'container-lessons')]/div[text()='Популярные курсы']//following-sibling::div/a")
+  private List<WebElement> lessons;
 
-    public PopularCourses(WebDriver driver) {
-        super(driver);
-    }
+  public PopularCourses(WebDriver driver) {
+    super(driver);
+  }
 
-    public Lessons clickLessonItem(String name) {
-        lessons.stream()
-                .filter(s -> s.getText().contains(name))
-                .findFirst()
-                .ifPresent(WebElement::click);
+  public Lessons clickLessonItem(String name) {
+    lessons.stream()
+        .filter(s -> s.getText().contains(name))
+        .findFirst()
+        .ifPresent(WebElement::click);
 
-        return new Lessons(driver);
-    }
+    return new Lessons(driver);
+  }
 
 }

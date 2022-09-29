@@ -12,18 +12,19 @@ import java.util.List;
 @Component("//*[contains(@class, 'container-lessons')]/div[text()='Рекомендации для вас']//following-sibling::div")
 public class RecommendationCourses extends AnyComponentAbs<RecommendationCourses> {
 
-    @FindBy(xpath = "//*[contains(@class, 'container-lessons')]/div[text()='Рекомендации для вас']//following-sibling::div/a")
-    private List<WebElement> lessons;
+  @FindBy(xpath = "//*[contains(@class, 'container-lessons')]/div[text()='Рекомендации для вас']//following-sibling::div/a")
+  private List<WebElement> lessons;
 
-    public RecommendationCourses(WebDriver driver) {
-        super(driver);
-    }
+  public RecommendationCourses(WebDriver driver) {
+    super(driver);
+  }
 
-    public Lessons clickLessonItem(String name) {
-        lessons
-                .forEach(s -> s.findElement(By.xpath("//div[contains(text(),'Специализация QA Automation Engineer')]")).click());
-
-        return new Lessons(driver);
-    }
+  public Lessons clickLessonItem(String name) {
+    lessons.stream()
+        .filter(s -> s.getText().contains(name))
+        .findFirst()
+        .ifPresent(WebElement::click);
+    return new Lessons(driver);
+  }
 
 }
