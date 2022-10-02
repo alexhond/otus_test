@@ -6,18 +6,13 @@ import components.RecommendationCourses;
 import components.SpecializationCourses;
 import extensions.UIExtension;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.MainPage;
-
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @ExtendWith(UIExtension.class)
 public class MainPageCoursesTest {
@@ -27,6 +22,7 @@ public class MainPageCoursesTest {
   public WebDriver driver;
 
   @Test
+  @Tag("check_popular_course")
   void click_popular_course() {
     new MainPage(driver).open();
     String name = "Выбор профессии в IT";
@@ -39,6 +35,7 @@ public class MainPageCoursesTest {
   }
 
   @Test
+  @Tag("check_recommendation_course")
   public void click_recommendation_course() {
     new MainPage(driver).open();
     String name = "Специализация QA Automation Engineer";
@@ -51,6 +48,7 @@ public class MainPageCoursesTest {
   }
 
   @Test
+  @Tag("check_specialization_course")
   void click_specialization_course() {
     new MainPage(driver).open();
     String name = "Специализация С++";
@@ -63,24 +61,44 @@ public class MainPageCoursesTest {
   }
 
   @Test
-  void compare_date_test() throws ParseException {
+  @Tag("test_max_date_specialization_courses")
+  void test_max_date_specialization_courses() {
     new MainPage(driver).open();
-    new SpecializationCourses(driver).getLessonsDate();
+    new SpecializationCourses(driver).getMaxDate();
   }
 
   @Test
-  void gg () {
-    List<String> list = new ArrayList<>();
-    list.add("27 сентября 10 месяцев");
-    list.add("28 сентября 15 месяцев");
-    list.add("В октябре 2023 года 9 месяцев");
-    list.add("О дате старта будет объявлено позже");
+  @Tag("void test_min_date_specializations_courses() {\n")
+  void test_min_date_specializations_courses() {
+    new MainPage(driver).open();
+    new SpecializationCourses(driver).getMinDate();
+  }
 
-    Pattern pattern = Pattern.compile("^\\d{1,2}\\s[a-zA-Zа-яА-Я]+");
+  @Test
+  @Tag("test_max_date_recommendation_courses")
+  void test_max_date_recommendation_courses() {
+    new MainPage(driver).open();
+    new RecommendationCourses(driver).getMaxDate();
+  }
 
-    list.stream().map(pattern::matcher)
-        .filter(Matcher::find)
-        .map(Matcher::group)
-        .forEach(System.out::println);
+  @Test
+  @Tag("test_min_date_recommendation_courses")
+  void test_min_date_recommendation_courses() {
+    new MainPage(driver).open();
+    new RecommendationCourses(driver).getMinDate();
+  }
+
+  @Test
+  @Tag("test_max_date_popular_courses")
+  void test_max_date_popular_courses() {
+    new MainPage(driver).open();
+    new PopularCourses(driver).getMaxDate();
+  }
+
+  @Test
+  @Tag("test_min_date_popular_courses")
+  void test_min_date_popular_courses() {
+    new MainPage(driver).open();
+    new PopularCourses(driver).getMinDate();
   }
 }
