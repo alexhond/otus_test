@@ -1,7 +1,6 @@
 package components;
 
 import annotations.Component;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.Lessons;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.BinaryOperator;
@@ -44,12 +42,8 @@ public class RecommendationCourses extends AnyComponentAbs<RecommendationCourses
           Matcher matcher = pattern.matcher(text);
           if (matcher.find()) {
             String date = matcher.group();
-            try {
-              Date dateMatcher = simpleDateFormat.parse(date);
-              return new Courses(text, dateMatcher);
-            } catch (ParseException e) {
-              e.printStackTrace();
-            }
+            Calendar dateMatcher = simpleDateFormat.getCalendar();
+            return new Courses(text, dateMatcher);
           }
           return null;
         }).filter(Objects::nonNull)
@@ -66,13 +60,8 @@ public class RecommendationCourses extends AnyComponentAbs<RecommendationCourses
           Pattern pattern = Pattern.compile("\\d{1,2}\\s[a-zA-Zа-яА-Я]+");
           Matcher matcher = pattern.matcher(text);
           if (matcher.find()) {
-            String date = matcher.group();
-            try {
-              Date dateMatcher = simpleDateFormat.parse(date);
-              return new Courses(text, dateMatcher);
-            } catch (ParseException e) {
-              e.printStackTrace();
-            }
+            Calendar dateMatcher = simpleDateFormat.getCalendar();
+            return new Courses(text, dateMatcher);
           }
           return null;
         }).filter(Objects::nonNull)

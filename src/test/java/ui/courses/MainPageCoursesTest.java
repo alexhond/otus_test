@@ -68,7 +68,7 @@ public class MainPageCoursesTest {
   }
 
   @Test
-  @Tag("void test_min_date_specializations_courses() {\n")
+  @Tag("test_min_date_specializations_courses")
   void test_min_date_specializations_courses() {
     new MainPage(driver).open();
     new SpecializationCourses(driver).getMinDate();

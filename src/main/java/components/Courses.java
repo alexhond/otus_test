@@ -1,10 +1,10 @@
 package components;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Courses {
   private String name;
-  private final Date date;
+  private final Calendar date;
 
   public String getName() {
     return name;
@@ -14,11 +14,11 @@ public class Courses {
     this.name = name;
   }
 
-  public Date getDate() {
+  public Calendar getDate() {
     return date;
   }
 
-  public Courses(String name, Date date) {
+  public Courses(String name, Calendar date) {
     this.name = name;
     this.date = date;
   }

@@ -2,13 +2,10 @@ package components;
 
 import actions.CommonActions;
 import annotations.Component;
-import annotations.UrlPrefix;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import waiters.StandartWaiter;
 
 public abstract class AnyComponentAbs<T> extends CommonActions<T> {
 

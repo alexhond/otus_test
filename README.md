@@ -28,3 +28,19 @@
 Сдача:
 Сдача происходит через git.
 Необходимо приложить инструкцию (вариант, написать в readme.md) по запуску.
+
+Запуск автотестов:
+Проверка курсов:
+-mvn clean test -DincludeTest=checkPopularTest
+-mvn clean test -DincludeTest=check_recommendation_course
+-mvn clean test -DincludeTest=check_specialization_course
+
+Проверка курсов стартующех раньге всех и позже всех:
+Курсы стартующие раньше всех:
+-mvn clean test -DincludeTest=test_min_date_specializations_courses
+-mvn clean test -DincludeTest=test_min_date_recommendation_courses
+-mvn clean test -DincludeTest=test_min_date_popular_courses
+Курсы стартующие позже всех:
+-mvn clean test -DincludeTest=test_max_date_specialization_courses
+-mvn clean test -DincludeTest=test_max_date_recommendation_courses
+-mvn clean test -DincludeTest=test_max_date_popular_courses
