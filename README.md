@@ -35,24 +35,27 @@
 _Доступные конфигурации_
 
 **Поиск курсов по названию:**
-opera: check courses by name - opera
-firefox: check courses by name - firefox
-chrome: check courses by name - chrome
+
+opera: clean test -Dtest=MainPageCoursesTest#click_popular_course+click_recommendation_course+click_specialization_course -Dbrowser=opera
+
+firefox: clean test -Dtest=MainPageCoursesTest#click_popular_course+click_recommendation_course+click_specialization_course -Dbrowser=firefox
+
+chrome: clean test -Dtest=MainPageCoursesTest#click_popular_course+click_recommendation_course+click_specialization_course -Dbrowser=chrome
 
 _Проверка курсов стартующих раньше всех и позже всех:_
 
 **Курсы стартующие раньше всех:**
 
-_opera: courses start earlier all - opera_
+_opera: clean test -Dtest=MainPageCoursesTest#test_min_date_specializations_courses+test_min_date_recommendation_courses+test_min_date_popular_courses -Dbrowser=opera
 
-_firefox: courses start earlier all - firefox_
+_firefox: clean test -Dtest=MainPageCoursesTest#test_min_date_specializations_courses+test_min_date_recommendation_courses+test_min_date_popular_courses -Dbrowser=firefox
 
-_chrome: courses start earlier all - chrome_
+_chrome: clean test -Dtest=MainPageCoursesTest#test_min_date_specializations_courses+test_min_date_recommendation_courses+test_min_date_popular_courses -Dbrowser=chrome
 
 **Курсы стартующие позже всех:**
 
-_opera: courses start later all - opera_
+_opera: clean test -Dtest=MainPageCoursesTest#test_max_date_specializations_courses+test_max_date_recommendation_courses+test_max_date_popular_courses -Dbrowser=opera
 
-_firefox: courses start later all - firefox_
+_firefox: clean test -Dtest=MainPageCoursesTest#test_max_date_specializations_courses+test_max_date_recommendation_courses+test_max_date_popular_courses -Dbrowser=firefox
 
-_chrome: courses start later all - chrome_
+_chrome:clean test -Dtest=MainPageCoursesTest#test_max_date_specializations_courses+test_max_date_recommendation_courses+test_max_date_popular_courses -Dbrowser=chrome
