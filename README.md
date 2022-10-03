@@ -28,6 +28,8 @@
 Сдача происходит через git.
 Необходимо приложить инструкцию (вариант, написать в readme.md) по запуску.
 
+----------------------------------------
+
 Конфигурация:
 
 -Dbrowser=указать браузер (chrome, firefox, opera)
@@ -36,26 +38,28 @@ _Доступные конфигурации_
 
 **Поиск курсов по названию:**
 
-opera: clean test -Dtest=MainPageCoursesTest#click_popular_course+click_recommendation_course+click_specialization_course -Dbrowser=opera
+opera: check courses by name - opera
 
-firefox: clean test -Dtest=MainPageCoursesTest#click_popular_course+click_recommendation_course+click_specialization_course -Dbrowser=firefox
+firefox: check courses by name - firefox
 
-chrome: clean test -Dtest=MainPageCoursesTest#click_popular_course+click_recommendation_course+click_specialization_course -Dbrowser=chrome
+chrome: check courses by name - chrome
+
+----------------------------------------
 
 _Проверка курсов стартующих раньше всех и позже всех:_
 
 **Курсы стартующие раньше всех:**
 
-_opera: clean test -Dtest=MainPageCoursesTest#test_min_date_specializations_courses+test_min_date_recommendation_courses+test_min_date_popular_courses -Dbrowser=opera
+_opera: courses start earlier all - opera_
 
-_firefox: clean test -Dtest=MainPageCoursesTest#test_min_date_specializations_courses+test_min_date_recommendation_courses+test_min_date_popular_courses -Dbrowser=firefox
+_firefox: courses start earlier all - firefox_
 
-_chrome: clean test -Dtest=MainPageCoursesTest#test_min_date_specializations_courses+test_min_date_recommendation_courses+test_min_date_popular_courses -Dbrowser=chrome
+_chrome: courses start earlier all - chrome_
 
 **Курсы стартующие позже всех:**
 
-_opera: clean test -Dtest=MainPageCoursesTest#test_max_date_specializations_courses+test_max_date_recommendation_courses+test_max_date_popular_courses -Dbrowser=opera
+_opera: courses start later all - opera_
 
-_firefox: clean test -Dtest=MainPageCoursesTest#test_max_date_specializations_courses+test_max_date_recommendation_courses+test_max_date_popular_courses -Dbrowser=firefox
+_firefox: courses start later all - firefox_
 
-_chrome:clean test -Dtest=MainPageCoursesTest#test_max_date_specializations_courses+test_max_date_recommendation_courses+test_max_date_popular_courses -Dbrowser=chrome
+_chrome: courses start later all - chrome_
