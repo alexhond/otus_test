@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.Lessons;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.BinaryOperator;
@@ -26,7 +27,10 @@ public class SpecializationCourses extends AnyComponentAbs<SpecializationCourses
   }
 
   public Lessons clickLessonItem(String name) {
-    lessons.stream().filter(s -> s.getText().contains(name)).findFirst().ifPresent(WebElement::click);
+    lessons.stream()
+        .filter(s -> s.getText().contains(name))
+        .findFirst()
+        .ifPresent(WebElement::click);
 
     return new Lessons(driver);
   }
@@ -39,14 +43,21 @@ public class SpecializationCourses extends AnyComponentAbs<SpecializationCourses
           Pattern pattern = Pattern.compile("\\d{1,2}\\s[a-zA-Zа-яА-Я]+");
           Matcher matcher = pattern.matcher(text);
           if (matcher.find()) {
-            Calendar dateMatcher = simpleDateFormat.getCalendar();
-            return new Courses(text, dateMatcher);
+            Date dateMatcher = null;
+            try {
+              dateMatcher = simpleDateFormat.parse(matcher.group());
+            } catch (ParseException e) {
+              e.printStackTrace();
+            }
+            if (dateMatcher != null)
+              return new Courses(text, dateMatcher);
           }
           return null;
         }).filter(Objects::nonNull)
+        .filter(s -> s.getDate() != null)
         .reduce(BinaryOperator.maxBy(Comparator.comparing(Courses::getDate)))
         .map(Courses::getName).get();
-    LOG.info("Курс стартующий позже всех: " + maxName);
+    LOG.info("Специализации. Курс стартующий позже всех: " + maxName);
   }
 
   public void getMinDate() {
@@ -57,14 +68,20 @@ public class SpecializationCourses extends AnyComponentAbs<SpecializationCourses
           Pattern pattern = Pattern.compile("\\d{1,2}\\s[a-zA-Zа-яА-Я]+");
           Matcher matcher = pattern.matcher(text);
           if (matcher.find()) {
-            Calendar dateMatcher = simpleDateFormat.getCalendar();
-            return new Courses(text, dateMatcher);
+            Date dateMatcher = null;
+            try {
+              dateMatcher = simpleDateFormat.parse(matcher.group());
+            } catch (ParseException e) {
+              e.printStackTrace();
+            }
+            if (dateMatcher != null)
+              return new Courses(text, dateMatcher);
           }
           return null;
         }).filter(Objects::nonNull)
         .reduce(BinaryOperator.minBy(Comparator.comparing(Courses::getDate)))
         .map(Courses::getName).get();
-    LOG.info("Курс стартующий позже всех: " + minName);
+    LOG.info("Специализации. Курс стартующий позже всех: " + minName);
   }
 }
 

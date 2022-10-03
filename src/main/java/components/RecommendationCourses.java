@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.Lessons;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.BinaryOperator;
@@ -41,15 +42,20 @@ public class RecommendationCourses extends AnyComponentAbs<RecommendationCourses
           Pattern pattern = Pattern.compile("\\d{1,2}\\s[a-zA-Zа-яА-Я]+");
           Matcher matcher = pattern.matcher(text);
           if (matcher.find()) {
-            String date = matcher.group();
-            Calendar dateMatcher = simpleDateFormat.getCalendar();
-            return new Courses(text, dateMatcher);
+            Date dateMatcher = null;
+            try {
+              dateMatcher = simpleDateFormat.parse(matcher.group());
+            } catch (ParseException e) {
+              e.printStackTrace();
+            }
+            if (dateMatcher != null)
+              return new Courses(text, dateMatcher);
           }
           return null;
         }).filter(Objects::nonNull)
         .reduce(BinaryOperator.maxBy(Comparator.comparing(Courses::getDate)))
         .map(Courses::getName).get();
-    LOG.info("Курс стартующий позже всех: " + maxName);
+    LOG.info("Рекоммендации. Курс стартующий позже всех: " + maxName);
   }
 
   public void getMinDate() {
@@ -60,13 +66,19 @@ public class RecommendationCourses extends AnyComponentAbs<RecommendationCourses
           Pattern pattern = Pattern.compile("\\d{1,2}\\s[a-zA-Zа-яА-Я]+");
           Matcher matcher = pattern.matcher(text);
           if (matcher.find()) {
-            Calendar dateMatcher = simpleDateFormat.getCalendar();
-            return new Courses(text, dateMatcher);
+            Date dateMatcher = null;
+            try {
+              dateMatcher = simpleDateFormat.parse(matcher.group());
+            } catch (ParseException e) {
+              e.printStackTrace();
+            }
+            if (dateMatcher != null)
+              return new Courses(text, dateMatcher);
           }
           return null;
         }).filter(Objects::nonNull)
         .reduce(BinaryOperator.minBy(Comparator.comparing(Courses::getDate)))
         .map(Courses::getName).get();
-    LOG.info("Курс стартующий позже всех: " + minName);
+    LOG.info("Рекоммендации. Курс стартующий позже всех: " + minName);
   }
 }

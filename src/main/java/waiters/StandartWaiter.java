@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class StandartWaiter implements WaiterInt {
 
-  private WebDriver driver = null;
+  private WebDriver driver;
 
   public StandartWaiter(WebDriver driver) {
     this.driver = driver;
@@ -32,6 +32,17 @@ public class StandartWaiter implements WaiterInt {
 
   public boolean waitForElementVisible(WebElement element) {
     return waitForCondition(ExpectedConditions.visibilityOf(element));
+  }
+
+  public boolean waitForElementVisibleAndClick(WebElement element) {
+    WebDriverWait webDriverWait = new WebDriverWait(driver, IMPLICITLY_WAIT_SECOND);
+    try {
+      webDriverWait.until(ExpectedConditions.visibilityOf(element));
+      element.click();
+      return true;
+    } catch (Exception ex) {
+      return false;
+    }
   }
 
   public boolean waitForElementNotVisible(WebElement element) {

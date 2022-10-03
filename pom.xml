@@ -85,6 +85,9 @@
     <profiles>
         <profile>
             <id>production</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <webdriver.base.url>https://otus.ru</webdriver.base.url>
             </properties>
@@ -110,6 +113,7 @@
                     <perCoreThreadCount>${perCoreThreadCount}</perCoreThreadCount>
                     <useUnlimitedThreads>${useUnlimitedThreads}</useUnlimitedThreads>
                     <threadCountMethods>${thread.count}</threadCountMethods>
+                    <testFailureIgnore>false</testFailureIgnore>
 
                     <systemPropertyVariables>
                         <browser>${browser}</browser>

@@ -4,7 +4,6 @@
 Цель:
 Реализовать на практике полученные знания, с использованием Actions и своих ожиданий.
 
-
 Описание/Пошаговая инструкция выполнения домашнего задания:
 Необходимо создать проект в Maven'e и реализовать:
 
@@ -29,18 +28,25 @@
 Сдача происходит через git.
 Необходимо приложить инструкцию (вариант, написать в readme.md) по запуску.
 
-Запуск автотестов:
-Проверка курсов:
--mvn clean test -DincludeTest=checkPopularTest
--mvn clean test -DincludeTest=check_recommendation_course
--mvn clean test -DincludeTest=check_specialization_course
+Конфигурация:
 
-Проверка курсов стартующех раньге всех и позже всех:
-Курсы стартующие раньше всех:
--mvn clean test -DincludeTest=test_min_date_specializations_courses
--mvn clean test -DincludeTest=test_min_date_recommendation_courses
--mvn clean test -DincludeTest=test_min_date_popular_courses
-Курсы стартующие позже всех:
--mvn clean test -DincludeTest=test_max_date_specialization_courses
--mvn clean test -DincludeTest=test_max_date_recommendation_courses
--mvn clean test -DincludeTest=test_max_date_popular_courses
+-Dbrowser=указать браузер (chrome, firefox, opera)
+
+_Доступные конфигурации_
+
+**Поиск курсов по названию:**
+opera: check courses by name - opera
+firefox: check courses by name - firefox
+chrome: check courses by name - chrome
+
+_Проверка курсов стартующих раньше всех и позже всех:_
+
+**Курсы стартующие раньше всех:**
+opera: courses start earlier all - opera
+firefox: courses start earlier all - firefox
+chrome: courses start earlier all - chrome
+
+**Курсы стартующие позже всех:**
+opera: courses start later all - opera
+firefox: courses start later all - firefox
+chrome: courses start later all - chrome
