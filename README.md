@@ -42,6 +42,7 @@ chrome: check courses by name - chrome
 _Проверка курсов стартующих раньше всех и позже всех:_
 
 **Курсы стартующие раньше всех:**
+
 _opera: courses start earlier all - opera_
 
 _firefox: courses start earlier all - firefox_
@@ -49,6 +50,7 @@ _firefox: courses start earlier all - firefox_
 _chrome: courses start earlier all - chrome_
 
 **Курсы стартующие позже всех:**
+
 _opera: courses start later all - opera_
 
 _firefox: courses start later all - firefox_
