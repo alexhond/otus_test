@@ -67,6 +67,11 @@ public class UIExtension implements BeforeEachCallback, AfterEachCallback {
     LOG.info("Статус теста: " + testResult);
     if (driver != null) {
       driver.close();
+      try {
+        driver.quit();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
   }
 }
