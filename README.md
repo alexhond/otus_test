@@ -43,10 +43,14 @@ _Проверка курсов стартующих раньше всех и п�
 
 **Курсы стартующие раньше всех:**
 _opera: courses start earlier all - opera_
+
 _firefox: courses start earlier all - firefox_
+
 _chrome: courses start earlier all - chrome_
 
 **Курсы стартующие позже всех:**
 _opera: courses start later all - opera_
+
 _firefox: courses start later all - firefox_
+
 _chrome: courses start later all - chrome_
