@@ -2,7 +2,6 @@ package ui.courses;
 
 import annotations.Driver;
 import components.PopularCourses;
-import components.RecommendationCourses;
 import components.SpecializationCourses;
 import extensions.UIExtension;
 import org.junit.jupiter.api.Assertions;
@@ -40,22 +39,6 @@ public class MainPageCoursesTest {
   }
 
   @Test
-  @Tag("check_recommendation_course")
-  @DisplayName("Рекоммендации - метод фильтр по названию курса")
-  void click_recommendation_course() {
-    new MainPage(driver).open();
-    String name = "Специализация QA Automation Engineer";
-
-    StandartWaiter waiter = new StandartWaiter(driver);
-    waiter.waitForElementVisibleAndClick(driver.findElement(By.xpath(buttonOnMainPage)));
-
-    Boolean title = new RecommendationCourses(driver)
-        .clickLessonItem(name)
-        .getPageTitle(name);
-    Assertions.assertTrue(title, errorMsg);
-  }
-
-  @Test
   @Tag("check_specialization_course")
   @DisplayName("Специализации - метод фильтр по названию курса")
   void click_specialization_course() {
@@ -85,22 +68,6 @@ public class MainPageCoursesTest {
   void test_min_date_specializations_courses() {
     new MainPage(driver).open();
     new SpecializationCourses(driver).getMinDate();
-  }
-
-  @Test
-  @Tag("test_max_date_recommendation_courses")
-  @DisplayName("Рекоммендации - поиск курса стартующего позже всех")
-  void test_max_date_recommendation_courses() {
-    new MainPage(driver).open();
-    new RecommendationCourses(driver).getMaxDate();
-  }
-
-  @Test
-  @Tag("test_min_date_recommendation_courses")
-  @DisplayName("Рекоммендации - поиск курса стартующего раньше всех")
-  void test_min_date_recommendation_courses() {
-    new MainPage(driver).open();
-    new RecommendationCourses(driver).getMinDate();
   }
 
   @Test
