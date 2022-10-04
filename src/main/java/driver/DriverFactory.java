@@ -1,24 +1,27 @@
 package driver;
 
+import com.google.inject.Inject;
 import driver.impl.ChromeDriverImpl;
 import driver.impl.FirefoxDriverImpl;
 import driver.impl.OperaDriverImpl;
 import exceptions.DriverTypeNotSupported;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import support.GuiceScoped;
 
 import java.util.Locale;
 
 public class DriverFactory implements IDriverFactory {
 
-  private final String browserType = System.getProperty("browser").toLowerCase(Locale.ROOT);
-  private static final String CHROME = "chrome";
-  private static final String FIREFOX = "firefox";
-  private static final String OPERA = "opera";
-  private final String driverName = System.getProperty("browser");
+  public GuiceScoped guiceScoped;
+
+  @Inject
+  public DriverFactory(GuiceScoped guiceScoped) {
+    this.guiceScoped = guiceScoped;
+  }
 
   @Override
   public EventFiringWebDriver getDriver() {
-    switch (driverName.toLowerCase(Locale.ROOT)) {
+    switch (guiceScoped.browserName) {
       case CHROME:
         return new EventFiringWebDriver(new ChromeDriverImpl().newDriver());
       case FIREFOX:
@@ -27,7 +30,7 @@ public class DriverFactory implements IDriverFactory {
         return new EventFiringWebDriver(new OperaDriverImpl().newDriver());
       default:
         try {
-          throw new DriverTypeNotSupported(this.browserType);
+          throw new DriverTypeNotSupported(guiceScoped.browserName.getName());
         } catch (DriverTypeNotSupported ex) {
           ex.printStackTrace();
           return null;

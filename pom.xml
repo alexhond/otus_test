@@ -22,6 +22,7 @@
         <thread.count>32</thread.count>
 
         <browser>chrome</browser>
+        <base.url>https://otus.ru/</base.url>
         <webdriver.base.url>https://otus.ru</webdriver.base.url>
         <test.project.language>RU</test.project.language>
 
@@ -114,13 +115,13 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <webdriver.base.url>https://otus.ru</webdriver.base.url>
+                <base.url>https://otus.ru</base.url>
             </properties>
         </profile>
         <profile>
             <id>test</id>
             <properties>
-                <webdriver.base.url>https://test.otus.ru</webdriver.base.url>
+                <base.url>https://test.otus.ru</base.url>
             </properties>
         </profile>
     </profiles>
@@ -147,6 +148,7 @@
                         <webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
                         <test.project.status>test</test.project.status>
                         <test.project.language>${test.project.language}</test.project.language>
+                        <base.url>${base.url}</base.url>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

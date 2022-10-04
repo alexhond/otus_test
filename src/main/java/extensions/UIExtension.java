@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import support.GuiceScoped;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -22,6 +23,8 @@ public class UIExtension implements BeforeEachCallback, AfterEachCallback {
   private static final Logger LOG = LoggerFactory.getLogger(UIExtension.class);
 
   private EventFiringWebDriver driver = null;
+  public GuiceScoped guiceScoped;
+
 
   private Set<Field> getAnnotatedFields(Class<? extends Annotation> annotation, ExtensionContext extensionContext) {
     Set<Field> set = new HashSet<>();
@@ -39,7 +42,7 @@ public class UIExtension implements BeforeEachCallback, AfterEachCallback {
 
   @Override
   public void beforeEach(ExtensionContext extensionContext) {
-    driver = new DriverFactory().getDriver();
+    driver = new DriverFactory(guiceScoped).getDriver();
     driver.register(new MouseListener());
     driver.manage().window().maximize();
     Set<Field> fields = getAnnotatedFields(Driver.class, extensionContext);

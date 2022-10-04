@@ -12,6 +12,8 @@ import support.GuiceScoped;
 
 public abstract class BasePage<T> {
 
+  private static final String HTTPS_OTUS_RU = "https://otus.ru";
+
   public BasePage(GuiceScoped guiceScoped) {
     this.guiceScoped = guiceScoped;
     PageFactory.initElements(guiceScoped.driver, this);
@@ -45,16 +47,16 @@ public abstract class BasePage<T> {
   }
 
   public T open(String name, String... values) throws Exception {
-    if(values.length == 0) {
-      throw new DataUrlNotValid();
-    }
+//    if(values.length == 0) {
+//      throw new DataUrlNotValid();
+//    }
     String template = this.getPageUrlTemplate(name);
     String pathFromTemplate = "";
     for(int i =0; i < values.length; i++) {
       pathFromTemplate = template.replace(String.format("{%s}", i + 1), values[i]);
     }
 
-    String hostname = System.getProperty("base.url");
+    String hostname = HTTPS_OTUS_RU;
     hostname = hostname.replaceAll("/+$", "");
 
     if(!this.getPath().isEmpty()) {

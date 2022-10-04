@@ -17,8 +17,7 @@ public class CommonPageSteps {
 
   @Пусть("Я открываю браузер {string}")
   public void initBrowser(String browserName) {
-    BrowserData browserData = BrowserData.valueOf(browserName.toUpperCase(Locale.ROOT));
-    guiceScoped.browserName = browserData;
+    guiceScoped.browserName = BrowserData.valueOf(browserName.toUpperCase(Locale.ROOT));
     guiceScoped.driver = driverFactory.getDriver();
   }
 }
