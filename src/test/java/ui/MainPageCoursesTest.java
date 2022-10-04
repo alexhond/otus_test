@@ -1,4 +1,4 @@
-package ui.courses;
+package ui;
 
 import annotations.Driver;
 import components.PopularCourses;
