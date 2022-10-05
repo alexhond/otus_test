@@ -68,7 +68,7 @@ public class LessonPageCucumber extends BasePage<LessonPageCucumber> {
             try {
               dateMatcher = simpleDateFormat.parse(matcher.group());
             } catch (ParseException ignored) {
-              LOG.error("Error");
+              LOG.info("-----------");
             }
             if (dateMatcher != null && (dateMatcher.equals(parse) || dateMatcher.compareTo(parse) > 0)) {
               String text1 = webElement.findElement(By.cssSelector(".lessons__new-item-title")).getText();
