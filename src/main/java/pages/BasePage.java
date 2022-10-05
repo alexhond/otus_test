@@ -23,7 +23,7 @@ public abstract class BasePage<T> {
 
   private String getPath() {
     Class<?> clazz = this.getClass();
-    if(clazz.isAnnotationPresent(PagePath.class)) {
+    if (clazz.isAnnotationPresent(PagePath.class)) {
       PagePath pagePath = clazz.getAnnotation(PagePath.class);
       return pagePath.value().replaceAll("/+$", "");
     }
@@ -33,11 +33,11 @@ public abstract class BasePage<T> {
 
   private String getPageUrlTemplate(String name) throws UrlTemplateNotValid {
     Class<?> clazz = this.getClass();
-    if(clazz.isAnnotationPresent(Url.class)) {
+    if (clazz.isAnnotationPresent(Url.class)) {
       Url urlTemplates = clazz.getAnnotation(Url.class);
       UrlTemplate[] templates = urlTemplates.value();
-      for(UrlTemplate urlTemplate: templates) {
-        if(urlTemplate.name().equals(name)) {
+      for (UrlTemplate urlTemplate : templates) {
+        if (urlTemplate.name().equals(name)) {
           return urlTemplate.template();
         }
       }
@@ -47,25 +47,22 @@ public abstract class BasePage<T> {
   }
 
   public T open(String name, String... values) throws Exception {
-//    if(values.length == 0) {
-//      throw new DataUrlNotValid();
-//    }
     String template = this.getPageUrlTemplate(name);
     String pathFromTemplate = "";
-    for(int i =0; i < values.length; i++) {
+    for (int i = 0; i < values.length; i++) {
       pathFromTemplate = template.replace(String.format("{%s}", i + 1), values[i]);
     }
 
     String hostname = HTTPS_OTUS_RU;
     hostname = hostname.replaceAll("/+$", "");
 
-    if(!this.getPath().isEmpty()) {
+    if (!this.getPath().isEmpty()) {
       guiceScoped.driver.get(hostname + this.getPath() + "/" + pathFromTemplate);
     } else {
       guiceScoped.driver.get(hostname + "/" + pathFromTemplate);
     }
 
-    return (T)this;
+    return (T) this;
   }
 
   @FindBy(tagName = "h1")
@@ -78,7 +75,7 @@ public abstract class BasePage<T> {
   }
 
   public T pageHeaderShouldBeSameAs(String header) {
-    assert this.header.getText().equals(header): "Error: Заголовок на странице не корректный";
+    assert this.header.getText().equals(header) : "Error: Заголовок на странице не корректный";
 
     return (T) this;
   }

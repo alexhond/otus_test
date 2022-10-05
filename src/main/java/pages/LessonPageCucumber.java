@@ -5,7 +5,6 @@ import annotations.Url;
 import annotations.UrlTemplate;
 import com.google.inject.Inject;
 import components.Courses;
-import io.cucumber.java.ht.Le;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -20,6 +19,7 @@ import java.util.*;
 import java.util.function.BinaryOperator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @Url({
     @UrlTemplate(name = "lesson", template = "{1}")
@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
 @PagePath("/lessons")
 public class LessonPageCucumber extends BasePage<LessonPageCucumber> {
   private static final Logger LOG = LoggerFactory.getLogger(LessonPageCucumber.class);
+  private static List<Courses> courses = new ArrayList<>();
 
   @Inject
   public LessonPageCucumber(GuiceScoped guiceScoped) {
@@ -36,7 +37,7 @@ public class LessonPageCucumber extends BasePage<LessonPageCucumber> {
   @FindBy(css = ".course-header2__title")
   private WebElement pageTitle;
 
-  @FindBy(css = ".lessons__new-item-start")
+  @FindBy(css = ".lessons__new-item-container")
   private List<WebElement> dateCourses;
 
   public LessonPageCucumber pageTitleShouldBeSameAs(String pageName) {
@@ -58,25 +59,36 @@ public class LessonPageCucumber extends BasePage<LessonPageCucumber> {
     }
     Date parse = simpleDateFormat.parse(group);
 
-    dateCourses.stream().map(WebElement::getText).map(text -> {
+    courses = dateCourses.stream()
+        .map(webElement -> {
+          String text = webElement.findElement(By.cssSelector(".lessons__new-item-bottom")).getText();
           Matcher matcher = pattern.matcher(text);
           if (matcher.find()) {
             Date dateMatcher = null;
             try {
               dateMatcher = simpleDateFormat.parse(matcher.group());
-              if(dateMatcher.equals(parse) || dateMatcher.compareTo(parse) > 0) {
-                System.out.println(text);
-              }
-            } catch (ParseException e) {
-              e.printStackTrace();
+            } catch (ParseException ignored) {
+              LOG.error("Error");
             }
-            return dateMatcher;
+            if (dateMatcher != null && (dateMatcher.equals(parse) || dateMatcher.compareTo(parse) > 0)) {
+              String text1 = webElement.findElement(By.cssSelector(".lessons__new-item-title")).getText();
+              return new Courses(text1, dateMatcher);
+            }
           }
           return null;
-        }).forEach(System.out::println);
-
+        }).filter(Objects::nonNull)
+        .filter(s -> s.getDate() != null)
+        .collect(Collectors.toList());
 
     return this;
   }
 
+  public void viewCourse() {
+    SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM");
+
+    courses.forEach(s -> {
+      String formatted = formatter.format(s.getDate());
+      LOG.info("Название курса: {}, дата курса {},", s.getName(), formatted);
+    });
+  }
 }

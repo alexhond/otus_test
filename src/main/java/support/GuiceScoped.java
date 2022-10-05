@@ -8,6 +8,6 @@ import org.openqa.selenium.WebDriver;
 @ScenarioScoped
 public class GuiceScoped extends AbstractModule {
 
-    public BrowserData browserName;
-    public WebDriver driver;
+  public BrowserData browserName;
+  public WebDriver driver;
 }

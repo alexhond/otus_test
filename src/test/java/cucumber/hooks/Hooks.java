@@ -6,18 +6,18 @@ import support.GuiceScoped;
 
 public class Hooks {
 
-    @Inject
-    private GuiceScoped guiceScoped;
+  @Inject
+  private GuiceScoped guiceScoped;
 
-    @After
-    public void afterScenario() {
-        try {
-            if (guiceScoped.driver != null) {
-                guiceScoped.driver.close();
-                guiceScoped.driver.quit();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+  @After
+  public void afterScenario() {
+    try {
+      if (guiceScoped.driver != null) {
+        guiceScoped.driver.close();
+        guiceScoped.driver.quit();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+  }
 }

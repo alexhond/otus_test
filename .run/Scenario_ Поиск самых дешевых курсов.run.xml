@@ -1,0 +1,23 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Scenario: Поиск самых дешевых курсов" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" singleton="false" nameIsGenerated="true">
+    <option name="CUCUMBER_CORE_VERSION" value="5" />
+    <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/resources/cucumber/courcesOnline.feature" />
+    <option name="GLUE" value="cucumber.hooks cucumber.steps.pages cucumber.steps.common" />
+    <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+    <module name="otus_test" />
+    <option name="NAME_FILTER" value="^Поиск самых дешевых курсов$" />
+    <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Поиск самых дешевых курсов$&quot;" />
+    <shortenClasspath name="NONE" />
+    <option name="SUGGESTED_NAME" value="Scenario: Поиск самых дешевых курсов" />
+    <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="io.cucumber.core.cli.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -25,12 +25,17 @@ public class LessonPageSteps {
   }
 
   @Если("Открыть страницу курсов программирования")
-  public void openLessonPage() throws Exception {
+  public void openLessonPageProgramming() throws Exception {
     lessonPage.open("lesson");
   }
 
   @И("Найти курс стартующий (.+)$")
   public void clickCourseByDate(String date) throws ParseException {
     lessonPage.getDatesCourses(date);
+  }
+
+  @Тогда("Курс будет найден и информация выведена в консоль")
+  public void viewInfoOnConsole() {
+    lessonPage.viewCourse();
   }
 }
