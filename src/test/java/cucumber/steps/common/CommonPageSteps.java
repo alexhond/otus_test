@@ -2,7 +2,7 @@ package cucumber.steps.common;
 
 import com.google.inject.Inject;
 import data.BrowserData;
-import driver.DriverFactory;
+import driver.DriverFactoryGS;
 import io.cucumber.java.ru.Пусть;
 import support.GuiceScoped;
 
@@ -11,7 +11,7 @@ import java.util.Locale;
 public class CommonPageSteps {
 
   @Inject
-  private DriverFactory driverFactory;
+  private DriverFactoryGS driverFactory;
   @Inject
   private GuiceScoped guiceScoped;
 

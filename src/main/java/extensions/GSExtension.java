@@ -1,7 +1,7 @@
 package extensions;
 
 import annotations.Driver;
-import driver.DriverFactoryUI;
+import driver.DriverFactoryGS;
 import listeners.MouseListener;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import support.GuiceScoped;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -18,10 +19,12 @@ import java.security.PrivilegedAction;
 import java.util.HashSet;
 import java.util.Set;
 
-public class UIExtension implements BeforeEachCallback, AfterEachCallback {
-  private static final Logger LOG = LoggerFactory.getLogger(UIExtension.class);
+public class GSExtension implements BeforeEachCallback, AfterEachCallback {
+  private static final Logger LOG = LoggerFactory.getLogger(GSExtension.class);
 
   private EventFiringWebDriver driver = null;
+  public GuiceScoped guiceScoped;
+
 
   private Set<Field> getAnnotatedFields(Class<? extends Annotation> annotation, ExtensionContext extensionContext) {
     Set<Field> set = new HashSet<>();
@@ -39,7 +42,7 @@ public class UIExtension implements BeforeEachCallback, AfterEachCallback {
 
   @Override
   public void beforeEach(ExtensionContext extensionContext) {
-    driver = new DriverFactoryUI().getDriver();
+    driver = new DriverFactoryGS(guiceScoped).getDriver();
     driver.register(new MouseListener());
     driver.manage().window().maximize();
     Set<Field> fields = getAnnotatedFields(Driver.class, extensionContext);

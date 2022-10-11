@@ -8,14 +8,12 @@ import exceptions.DriverTypeNotSupported;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import support.GuiceScoped;
 
-import java.util.Locale;
-
-public class DriverFactory implements IDriverFactory {
+public class DriverFactoryGS implements IDriverFactory {
 
   public GuiceScoped guiceScoped;
 
   @Inject
-  public DriverFactory(GuiceScoped guiceScoped) {
+  public DriverFactoryGS(GuiceScoped guiceScoped) {
     this.guiceScoped = guiceScoped;
   }
 
