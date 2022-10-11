@@ -5,12 +5,12 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import rest_assured.util.endpoints.EndPoints;
-import rest_assured.util.entities.Category;
-import rest_assured.util.entities.Pet;
-import rest_assured.util.entities.Tag;
-import rest_assured.util.entities.User;
-import rest_assured.util.steps.PetSteps;
+import restassured.util.endpoints.EndPoints;
+import restassured.util.entities.Category;
+import restassured.util.entities.Pet;
+import restassured.util.entities.Tag;
+import restassured.util.entities.User;
+import restassured.util.steps.PetSteps;
 
 import java.util.ArrayList;
 import java.util.List;
