@@ -1,8 +1,8 @@
-#// Создать сеть
+# // Создать сеть
 docker network create selenoid_1
 docker network create selenoid_2
 
-#// спулить images
+# // спулить images
 docker pull selenoid/chrome:104.0
 docker pull selenoid/chrome:103.0
 docker pull selenoid/opera:86.0
@@ -21,11 +21,11 @@ selenoid/ggr_windows_amd64.exe -guests-allowed -guests-quota "test" -verbose -qu
 $current = $PWD -replace "\\", "/" -replace "C", "c"
 selenoid/ggr-ui_windows_amd64.exe -quota-dir ${current}/selenoid/ggr_config/quota/
 
-#// Запуск selenoid-ui
+# // Запуск selenoid-ui
 $current = $PWD -replace "\\", "/" -replace "C", "c"
 selenoid/selenoid-ui_windows_amd64.exe --selenoid-uri http://127.0.0.1:8888 -listen ":8090" -allowed-origin "*"
 
-#// Запуск nginx
+# // Запуск nginx
 
 [//]: # (docker pull nginx)
 
