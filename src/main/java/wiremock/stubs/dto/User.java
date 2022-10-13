@@ -6,6 +6,7 @@ public class User {
   public int age;
   public String cource;
   public String email;
+  public String name;
 
   public User() {
   }
@@ -16,8 +17,6 @@ public class User {
     this.email = email;
     this.name = name;
   }
-
-  private String name;
 
   public Integer getAge() {
     return age;

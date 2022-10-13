@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "age": {
+          "type": "integer"
+        },
+        "cource": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "age",
+        "cource",
+        "email",
+        "name"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "age": {
+          "type": "integer"
+        },
+        "cource": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "age",
+        "cource",
+        "email",
+        "name"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "age": {
+          "type": "integer"
+        },
+        "cource": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "age",
+        "cource",
+        "email",
+        "name"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "age": {
+          "type": "integer"
+        },
+        "cource": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "age",
+        "cource",
+        "email",
+        "name"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "age": {
+          "type": "integer"
+        },
+        "cource": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "age",
+        "cource",
+        "email",
+        "name"
+      ]
+    }
+  ]
+}

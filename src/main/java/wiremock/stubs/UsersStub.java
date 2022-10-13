@@ -1,14 +1,10 @@
 package wiremock.stubs;
 
-import edu.emory.mathcs.backport.java.util.Arrays;
 import net.minidev.json.JSONArray;
-import net.minidev.json.JSONObject;
 import wiremock.stubs.dto.User;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
