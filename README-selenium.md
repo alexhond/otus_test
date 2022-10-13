@@ -27,3 +27,38 @@
 Сдача:
 Сдача происходит через git.
 Необходимо приложить инструкцию (вариант, написать в readme.md) по запуску.
+
+
+-----------------------
+
+#// Конфигурация:
+
+-Dbrowser=указать браузер (chrome, firefox, opera)
+
+#// Доступные конфигурации
+
+**Поиск курсов по названию:**
+
+opera: check courses by name - opera
+
+firefox: check courses by name - firefox
+
+chrome: check courses by name - chrome
+
+**Проверка курсов стартующих раньше всех и позже всех:**
+
+Курсы стартующие раньше всех:
+
+opera: courses start earlier all - opera
+
+firefox: courses start earlier all - firefox
+
+chrome: courses start earlier all - chrome
+
+Курсы стартующие позже всех:
+
+opera: courses start later all - opera
+
+firefox: courses start later all - firefox
+
+chrome: courses start later all - chrome

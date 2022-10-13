@@ -1,8 +1,12 @@
 package wiremock.stubs;
 
+import io.cucumber.java.bs.A;
+import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
@@ -16,13 +20,17 @@ public class CourcesStub {
   }
 
   private void registerCourcesStub() {
-    Map<String, String> map = new HashMap<>();
-    map.put("C PLUS", "3311");
-    map.put("JAVASCRIPT", "2211");
+    Map<String, Object> mapOne = new HashMap<>();
+    mapOne.put("C ++ MOCK", 3311);
+    Map<String, Object> mapTwo = new HashMap<>();
+    mapTwo.put("JAVASCRIPT MOCK", 2211);
+    List<Map<String, Object>> list = new ArrayList<>();
+    list.add(mapOne);
+    list.add(mapTwo);
 
     stubFor(get(urlEqualTo(String.format("%s/get/all", basePath)))
         .willReturn(aResponse()
-            .withBody(new JSONObject(map).toJSONString())
+            .withBody(JSONArray.toJSONString(list))
             .withStatus(200)));
   }
 }

@@ -15,11 +15,11 @@ public class GradeStubs {
   }
 
   private void registerGradeStub() {
-    Map<String, String> map = new HashMap<>();
-    map.put("name", "Leonid");
-    map.put("score", "222");
+    Map<String, Object> map = new HashMap<>();
+    map.put("name", "LeonidMock");
+    map.put("score", 222);
 
-    stubFor(get(urlEqualTo(String.format("%s/get/id", basePath)))
+    stubFor(get(urlEqualTo(String.format("%s/get/\\d+", basePath)))
         .willReturn(aResponse()
             .withBody(new JSONObject(map).toJSONString())
             .withStatus(200)));

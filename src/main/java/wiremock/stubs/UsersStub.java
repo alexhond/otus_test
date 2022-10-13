@@ -1,8 +1,13 @@
 package wiremock.stubs;
 
+import edu.emory.mathcs.backport.java.util.Arrays;
+import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
+import wiremock.stubs.dto.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
@@ -15,13 +20,13 @@ public class UsersStub {
   }
 
   private void registerUsersStub() {
-    Map<String, String> map = new HashMap<>();
-    map.put("name", "Leonid");
-    map.put("score", "222");
+    List<User> user = new ArrayList<>();
+    user.add(new User(1, "QA MOCK", "mock2@mail.ru", "LeonidMock"));
+    user.add(new User(2, "Java MOCK", "mock1@mail.ru", "KolyaMock"));
 
     stubFor(get(urlEqualTo(String.format("%s/get/all", basePath)))
         .willReturn(aResponse()
-            .withBody(new JSONObject(map).toJSONString())
+            .withBody(JSONArray.toJSONString(user))
             .withStatus(200)));
   }
 }
