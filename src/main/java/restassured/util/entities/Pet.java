@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Objects;
 
-public class Pet extends CommonPetStoreObject{
+public class Pet extends CommonObject {
   public Pet() {
   }
 

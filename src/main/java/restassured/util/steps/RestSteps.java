@@ -1,14 +1,16 @@
 package restassured.util.steps;
 
 import restassured.util.endpoints.EndPoints;
-import restassured.util.entities.CommonPetStoreObject;
+import restassured.util.entities.CommonObject;
 import restassured.util.utils.RestUtils;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 
-public class PetSteps {
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
-  public static Response postResponse(CommonPetStoreObject request, EndPoints endPoints) {
+public class RestSteps {
+
+  public static Response postResponse(CommonObject request, EndPoints endPoints) {
     return RestUtils.sendPost(request, endPoints.getEndPointName()).extract().response();
   }
 
@@ -16,11 +18,11 @@ public class PetSteps {
     return RestUtils.sendGet(endPoints.getEndPointName(), name).extract().response();
   }
 
-  public static Response putResponse(CommonPetStoreObject request, String name, EndPoints endPoints) {
+  public static Response putResponse(CommonObject request, String name, EndPoints endPoints) {
     return RestUtils.sendPut(request, endPoints.getEndPointName(), name).extract().response();
   }
 
-  public static Response putResponse(CommonPetStoreObject request, EndPoints endPoints) {
+  public static Response putResponse(CommonObject request, EndPoints endPoints) {
     return RestUtils.sendPut(request, endPoints.getEndPointName()).extract().response();
   }
 
@@ -28,9 +30,12 @@ public class PetSteps {
     response.then().statusCode(statusCode);
   }
 
-  public static void compareObjects(Response actual, CommonPetStoreObject expected) {
-    CommonPetStoreObject actualResponse = actual.as(expected.getClass());
+  public static void compareObjects(Response actual, CommonObject expected) {
+    CommonObject actualResponse = actual.as(expected.getClass());
     Assertions.assertEquals(expected, actualResponse);
+  }
 
+  public static void validateJsonSchema(Response actual, String path) {
+    actual.then().body(matchesJsonSchemaInClasspath(path));
   }
 }

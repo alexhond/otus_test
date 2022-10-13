@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
-public class User extends CommonPetStoreObject {
+public class User extends CommonObject {
 
   public User() {
   }
