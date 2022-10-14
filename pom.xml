@@ -10,7 +10,7 @@
 
     <properties>
         <stub.url>127.0.0.1</stub.url>
-        <webdriver.remote.url>http://localhost/wd/hub</webdriver.remote.url>
+<!--        <webdriver.remote.url>http://localhost/wd/hub</webdriver.remote.url>-->
         <webdriver.manager.version>4.2.0</webdriver.manager.version>
         <selenium.java.version>3.141.59</selenium.java.version>
         <junit.version>5.8.1</junit.version>
@@ -323,28 +323,6 @@
                         <phase>deploy</phase>
                         <goals>
                             <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-codegen-plugin</artifactId>
-                <version>3.3.4</version>
-                <executions>
-                    <execution>
-                        <id>generate-sources-api</id>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <sourceRoot>${basedir}/src/test/java/pojo/xml</sourceRoot>
-                            <wsdlOptions>
-                                <wsdlOption>
-                                    <wsdl>https://www.dataaccess.com/webservicesserver/numberconversion.wso?WSDL</wsdl>
-                                </wsdlOption>
-                            </wsdlOptions>
-                        </configuration>
-                        <goals>
-                            <goal>wsdl2java</goal>
                         </goals>
                     </execution>
                 </executions>
