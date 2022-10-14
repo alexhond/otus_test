@@ -8,5 +8,4 @@ public class LessonsPage extends AnyPageAbs<LessonsPage> {
     super(driver);
   }
 
-
 }

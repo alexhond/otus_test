@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.logging.Level;
@@ -26,7 +27,10 @@ public class ChromeDriverImpl implements IDriver {
     chromeOptions.addArguments("--disable-popup-blocking");
     chromeOptions.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
     chromeOptions.setCapability(CapabilityType.VERSION, System.getProperty("browser.version", ""));
-    chromeOptions.setCapability("enableVNC", Boolean.parseBoolean(System.getProperty("enableVNC", "false")));
+    chromeOptions.setCapability(CapabilityType.BROWSER_NAME, "chrome");
+    chromeOptions.setCapability(CapabilityType.BROWSER_VERSION, "104.0");
+    chromeOptions.setCapability("enableVNC", true);
+
     chromeOptions.setHeadless(HEADLESS);
 
     LoggingPreferences logPrefs = new LoggingPreferences();

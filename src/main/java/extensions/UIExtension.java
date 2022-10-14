@@ -1,7 +1,7 @@
 package extensions;
 
 import annotations.Driver;
-import driver.DriverFactory;
+import driver.DriverFactoryUI;
 import listeners.MouseListener;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
@@ -39,7 +39,7 @@ public class UIExtension implements BeforeEachCallback, AfterEachCallback {
 
   @Override
   public void beforeEach(ExtensionContext extensionContext) {
-    driver = new DriverFactory().getDriver();
+    driver = new DriverFactoryUI().getDriver();
     driver.register(new MouseListener());
     driver.manage().window().maximize();
     Set<Field> fields = getAnnotatedFields(Driver.class, extensionContext);
