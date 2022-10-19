@@ -275,7 +275,7 @@
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>
-                            <value>${project.basedir}/allure-results</value>
+                            <value>${project.build.directory}/site/allure-maven-plugin</value>
                         </property>
                         <property>
                             <name>junit.jupiter.extensions.autodetection.enabled</name>
