@@ -275,14 +275,14 @@
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>
-                            <value>${project.build.directory}/site/allure-maven-plugin</value>
+                            <value>${project.build.directory}/allure-results</value>
                         </property>
                         <property>
                             <name>junit.jupiter.extensions.autodetection.enabled</name>
                             <value>true</value>
                         </property>
                     </systemProperties>
-                    <reportFormat>plain</reportFormat>
+<!--                    <reportFormat>plain</reportFormat>-->
 
                     <systemPropertyVariables>
                         <webdriver.remote.url>${webdriver.remote.url}</webdriver.remote.url>
