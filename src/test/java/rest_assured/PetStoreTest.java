@@ -15,6 +15,7 @@ import restassured.util.steps.RestSteps;
 import java.util.ArrayList;
 import java.util.List;
 
+@org.junit.jupiter.api.Tag("@rest")
 public class PetStoreTest {
 
   /**
