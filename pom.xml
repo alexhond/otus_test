@@ -167,7 +167,6 @@
             <version>${allure-junit4.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit4</artifactId>
@@ -376,8 +375,8 @@
             </plugin>
             <plugin>
                 <groupId>io.qameta.allure</groupId>
-                <artifactId>allure-java-commons</artifactId>
-                <version>2.14.0</version>
+                <artifactId>allure-maven</artifactId>
+                <version>2.10.0</version>
             </plugin>
         </plugins>
     </build>
