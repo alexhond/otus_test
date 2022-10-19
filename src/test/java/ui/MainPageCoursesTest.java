@@ -18,6 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 
 @ExtendWith(UIExtension.class)
+@Tag("@ui")
 public class MainPageCoursesTest {
   private final String errorMsg = "Не удалось получить заголовок страницы";
   private final String buttonOnMainPage = "//button[@class='js-cookie-accept cookies__button']";
