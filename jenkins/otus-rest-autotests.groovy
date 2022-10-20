@@ -7,7 +7,7 @@ timeout(300) {
             checkout scm
         }
         stage('Running tests') {
-            sh "mvn test -DincludeTags=${TAGS}"
+            sh "mvn test -X -DincludeTags=${TAGS}"
         }
         stage('Publisher allure') {
             allure([
