@@ -9,12 +9,13 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <webdriver.remote.url>http://localhost/wd/hub</webdriver.remote.url>
+<!--        <webdriver.remote.url>http://localhost/wd/hub</webdriver.remote.url>-->
         <webdriver.manager.version>4.2.0</webdriver.manager.version>
         <selenium.java.version>3.141.59</selenium.java.version>
         <junit.version>5.8.1</junit.version>
         <faker.version>1.0.1</faker.version>
-
+        <browser.version>105.0</browser.version>
+        <aspectj.version>1.8.10</aspectj.version>
         <forkCount>1</forkCount>
         <reuseForks>true</reuseForks>
         <parallel>all</parallel>
@@ -70,16 +71,6 @@
             <version>${junit.version}</version>
         </dependency>
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>1.4.1</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.4.1</version>
-        </dependency>
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>2.0.1</version>
@@ -88,22 +79,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.24</version>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-junit-platform-engine</artifactId>
-            <version>5.5.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>5.5.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-guice</artifactId>
-            <version>5.5.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject</groupId>
@@ -140,6 +115,16 @@
             <artifactId>allure-maven</artifactId>
             <version>${allure-maven.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-guice</artifactId>
+            <version>5.5.0</version>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -175,6 +160,28 @@
                     <threadCountMethods>${thread.count}</threadCountMethods>
                     <testFailureIgnore>false</testFailureIgnore>
 
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>io.qameta.allure.junit5.AllureJunit5</value>
+                        </property>
+                    </properties>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+
+                    <systemProperties>
+                        <property>
+                            <name>allure.results.directory</name>
+                            <value>${project.build.directory}/allure-results</value>
+                        </property>
+                        <property>
+                            <name>junit.jupiter.extensions.autodetection.enabled</name>
+                            <value>true</value>
+                        </property>
+                    </systemProperties>
+
+
                     <systemPropertyVariables>
                         <webdriver.remote.url>${webdriver.remote.url}</webdriver.remote.url>
                         <browser>${browser}</browser>
@@ -184,8 +191,16 @@
                         <test.project.status>test</test.project.status>
                         <test.project.language>${test.project.language}</test.project.language>
                         <base.url>${base.url}</base.url>
+                        <browser.version>${browser.version}</browser.version>
                     </systemPropertyVariables>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -235,6 +250,16 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.11.2</version>
+                <configuration>
+                    <reportVersion>2.17.2</reportVersion>
+                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+                    <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>

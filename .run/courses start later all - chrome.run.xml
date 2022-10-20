@@ -12,6 +12,7 @@
             <list>
               <option value="clean" />
               <option value="test" />
+              <option value="-X" />
               <option value="-Dtest=MainPageCoursesTest#test_max_date_specializations_courses+test_max_date_recommendation_courses+test_max_date_popular_courses" />
               <option value="-Dbrowser=chrome" />
             </list>

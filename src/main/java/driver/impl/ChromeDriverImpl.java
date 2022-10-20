@@ -26,9 +26,9 @@ public class ChromeDriverImpl implements IDriver {
     chromeOptions.addArguments("--disable-notifications");
     chromeOptions.addArguments("--disable-popup-blocking");
     chromeOptions.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-    chromeOptions.setCapability(CapabilityType.VERSION, System.getProperty("browser.version", ""));
+    chromeOptions.setCapability(CapabilityType.VERSION, System.getProperty("browser.version", "106.0"));
     chromeOptions.setCapability(CapabilityType.BROWSER_NAME, "chrome");
-    chromeOptions.setCapability(CapabilityType.BROWSER_VERSION, "104.0");
+    chromeOptions.setCapability(CapabilityType.BROWSER_VERSION, System.getProperty("browser.version", "106.0"));
     chromeOptions.setCapability("enableVNC", true);
 
     chromeOptions.setHeadless(HEADLESS);

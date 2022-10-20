@@ -3,8 +3,8 @@ docker network create selenoid_1
 docker network create selenoid_2
 
 # // спулить images
-docker pull selenoid/chrome:104.0
-docker pull selenoid/chrome:103.0
+docker pull selenoid/chrome:106.0
+docker pull selenoid/chrome:105.0
 docker pull selenoid/opera:86.0
 
 # //запуск докера (Windows)
