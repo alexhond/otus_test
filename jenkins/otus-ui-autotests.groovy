@@ -1,8 +1,5 @@
 timeout(300) {
     node('docker') {
-        wrap([$class: 'BuildUser']) {
-            summary = """<b>Owner:</b> ${env.BUILD_USER}"""
-        }
         stage('Checkout') {
             checkout scm
         }
