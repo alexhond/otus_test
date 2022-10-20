@@ -4,7 +4,7 @@ timeout(300) {
             checkout scm
         }
         stage('Running tests') {
-            sh "mvn test -Dbase.url=${BASE_URL} -Dbrowser=${BROWSER_NAME} -DincludeTags=${TAGS} -Dwebdriver.remote.url=http://localhost/wd/hub"
+            sh "mvn test -Dbase.url=${BASE_URL} -Dbrowser=${BROWSER_NAME} -DincludeTags=${TAGS}"
         }
         stage('Publisher allure') {
             allure([
