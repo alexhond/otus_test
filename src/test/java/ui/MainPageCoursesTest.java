@@ -4,20 +4,18 @@ import annotations.Driver;
 import components.PopularCourses;
 import components.SpecializationCourses;
 import extensions.UIExtension;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import pages.MainPage;
 import waiters.StandartWaiter;
 
-import java.net.MalformedURLException;
-import java.net.URI;
-
 @ExtendWith(UIExtension.class)
+@Tag("@ui")
 public class MainPageCoursesTest {
   private final String errorMsg = "Не удалось получить заголовок страницы";
   private final String buttonOnMainPage = "//button[@class='js-cookie-accept cookies__button']";
